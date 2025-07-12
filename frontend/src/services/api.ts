@@ -79,6 +79,11 @@ export const apiService = {
     return response.data;
   },
 
+  getAllStudents: async (): Promise<Student[]> => {
+    const response = await api.get('/students');
+    return response.data;
+  },
+
   // Assessment
   getDefaultParagraph: async (): Promise<{ text: string }> => {
     const response = await api.get('/paragraphs/default');

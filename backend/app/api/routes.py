@@ -43,6 +43,12 @@ def get_student(student_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Student not found")
     return student
 
+@api_router.get("/students", response_model=List[StudentResponse])
+def get_all_students(db: Session = Depends(get_db)):
+    """Get all students"""
+    students = db.query(Student).order_by(Student.name).all()
+    return students
+
 @api_router.get("/paragraphs/default")
 def get_default_paragraph():
     """Get the default reading passage"""
